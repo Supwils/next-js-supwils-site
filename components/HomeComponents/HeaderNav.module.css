@@ -1,0 +1,189 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 18%;
+    background: var(--background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-left: 3rem;
+    transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+
+/* Hamburger Menu Icon */
+.menuIcon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Add these new styles after your existing CSS */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}
+
+.dropdown:hover .dropbtn .emojiDefault {
+    display: none;
+}
+
+.dropdown:hover .dropbtn .emojiHover {
+    display: inline-block;
+}
+
+.dropbtn .emojiDefault {
+    display: inline-block;
+}
+
+.dropbtn .emojiHover {
+    display: none;
+}
+
+.dropbtn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 3rem;
+    transition: 0.3s;
+}
+
+.dropbtn:hover {
+    color: var(--main-color);
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background: var(--bg-color);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.dropdownContent a:first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.dropdownContent a:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.dropdownContent a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.dropdownContent a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.show {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+        /* Hide navbar by default */
+        flex-direction: column;
+        gap: 1.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgb(18, 23, 42);
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbarOpen {
+        display: flex;
+        /* Show navbar when toggled */
+    }
+
+    .navbar a {
+        font-size: 1.2rem;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .menuIcon {
+        display: block;
+        /* Show hamburger menu icon */
+    }
+
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropbtn {
+        margin-left: 0;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .dropdownContent {
+        position: relative;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .dropdownContent a {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .navbar a {
+        font-size: 1rem;
+    }
+}

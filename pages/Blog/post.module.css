@@ -1,0 +1,43 @@
+.post_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 3% 0% 3%;
+    min-height: 100vh;
+}
+
+.post_content {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    width: 70%;
+    background: var(--background);
+    border-radius: 1rem;
+    padding: 10rem;
+    margin-top: 1rem;
+}
+.post_content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.post_content h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.post_content h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.post_content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.post_main {
+    font-size: 1.5rem;
+    font-weight: 300;
+}

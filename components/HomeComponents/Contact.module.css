@@ -1,0 +1,58 @@
+.contact_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3% 0% 3%;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Space between content and image */
+  align-items: center;
+  text-align: left; /* Align text to the left */
+  width: 70%;
+  background: var(--background);
+  border-radius: 1rem;
+  padding: 5rem;
+}
+.contact h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.contact form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+.input_box {
+  display: flex;
+  justify-content: space-between;
+}
+.input_box input {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background: var(--second-bg-color);
+  border-radius: 0.5rem;
+  margin: 0.5rem 0.5rem;
+}
+.contact textarea {
+  width: 90%;
+  height: 20rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background: var(--second-bg-color);
+  border-radius: 0.5rem;
+  margin: 0.5rem 0.5rem;
+  resize: none;
+}
+.validation_message {
+  display: block; /* Ensure the message is displayed as a block element */
+  color: rgb(218, 67, 33); /* Set the color to red for visibility */
+  margin-top: 10px; /* Add some margin to separate it from the submit button */
+  font-size: 1.2rem;
+}

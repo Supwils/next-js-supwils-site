@@ -1,0 +1,22 @@
+.exprience_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3% 0% 3%;
+}
+
+.exprience_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    width: 70%;
+    background: var(--background);
+    border-radius: 1rem;
+    padding: 5rem;
+}
+.exprience_content h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
