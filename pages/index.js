@@ -1,5 +1,5 @@
 import HomePage from "./Home/HomePage";
-import i18n from "./i18n";
+import i18n from "../data/i18n";
 export default function Home()
 {
     return (

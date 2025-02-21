@@ -1,5 +1,5 @@
 import styles from './ResourceShare.module.css';
-import resources from './resources_data';
+import resources from '../../data/resources_data';
 
 const ResourceShare = () => {
     return (

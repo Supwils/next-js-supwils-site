@@ -1,5 +1,5 @@
 import styles from './project.module.css';
-import projectData from './projectData';
+import projectData from '../../data/projectData';
 import ProjectCard from '../../components/CustomComponents/ProjectCard';
 import SearchBar from './searchBar';
 import { useState, useCallback } from 'react';
@@ -18,7 +18,7 @@ const Project = () => {
                 tags.some(tag => project.tags.includes(tag))
             );
         }
-        
+
         filtered = filtered.sort((a, b) => b.value - a.value);
 
         setFilteredProjects(filtered);
