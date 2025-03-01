@@ -46,7 +46,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--background-color);
   background-image: var(--background-image)
-
 }
 
 html {
@@ -58,9 +57,9 @@ html {
 
 .App {
   text-align: center;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .btn {

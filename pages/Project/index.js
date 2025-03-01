@@ -4,17 +4,20 @@ import ProjectCard from '../../components/CustomComponents/ProjectCard';
 import SearchBar from './searchBar';
 import { useState, useCallback } from 'react';
 
-const Project = () => {
+const Project = () =>
+{
     const [filteredProjects, setFilteredProjects] = useState(projectData);
 
     // 🔥 Use useCallback to prevent function recreation on every render
-    const handleSearch = useCallback((text, tags) => {
+    const handleSearch = useCallback((text, tags) =>
+    {
         let filtered = projectData.filter(project =>
             project.name.toLowerCase().includes(text.toLowerCase())
         );
 
-        if (!tags.includes("All")) {
-            filtered = filtered.filter(project => 
+        if (!tags.includes("All"))
+        {
+            filtered = filtered.filter(project =>
                 tags.some(tag => project.tags.includes(tag))
             );
         }
