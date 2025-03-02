@@ -2,7 +2,7 @@ const projectData = [
     {
         name: "Supwils Personal Website + Blog",
         tags: ["Fullstack", "Nextjs", "React", "Tailwind + css module"],
-        description: "• Developed a full-stack web enabling users to live stream and build fans community. \n • Implemented server-side logic with Next.js and RESTful API; built frontend with React and TailwindCSS \n • Integrated Prisma ORM with MySQL for database managing to ensure effective data operations systems. \n • Built a streaming service with LiveKit and Ingress, and incorporated live chat using Socket.io. Utilized Redis caching to store live chat data, reducing database load and response time. \n • Implemented versatile features to enhance platform engagement and user retention, including fan management, push notifications, and personalized user experiences.",
+        description: "A nextjs based personal website with blog features. Showcaseing basic info, expeiences, projects, and a blog section. Then rest would be a custom section that inplements my ideas and creativity.",
         image: "/images/helloworld.jpg",
         link: "https://github.com/Supwils/StreamForYall",
         value: 100
@@ -10,23 +10,23 @@ const projectData = [
     {
         name: "Web Social Media Platform",
         tags: ["Fullstack", "React", "Nodejs", "Expressjs","MongoDB"],
-        description: "Description 2",
+        description: "A fullstack web app with modern social media features like login, post, comment, follow, etc. Seprated frontend and backend. Followed Test Driven Development approach. Used Jest for testing.",
         image: "https://supwilsmedia.s3.us-east-2.amazonaws.com/proj_img/websocial1.gif",
         link: "",
         value: 90
     },
     {
         name: "Shoot the 🏀 Web Game",
-        tags: ["Html/CSS", "Game", "tag3"],
-        description: "Description 3",
+        tags: ["Html/CSS", "Game"],
+        description: "A very simple web game that you can shoot basketballs to the basket.",
         image: "/images/helloworld.jpg",
         link: "",
         value: 80
     },
     {
         name: "Solar System Simulator",
-        tags: ["C++", "OpenGL", "tag3"],
-        description: "Description 4",
+        tags: ["C++", "OpenGL"],
+        description: "A windows application that simulates the solar system. It has 3D models of the planets and the sun. It also has a camera that can be moved around the system.",
         image: "https://supwilsmedia.s3.us-east-2.amazonaws.com/proj_img/solarsys1.png",
         link: "https://github.com/Supwils/SolarSystemOpenGL",
         value: 85
@@ -35,15 +35,15 @@ const projectData = [
     {
         name: "Dice Game",
         tags: ["Python", "Game", "tag3"],
-        description: "Description 5",
+        description: "Python GUI game that simulates a dice game. It has a simple UI and a dice animation.",
         image: "/images/helloworld.jpg",
         link: "",
         value: 75
     },
     {
         name: "Vgg-16 based Similar Image Search",
-        tags: ["Python", "Game", "Machine Learning"],
-        description: "Description 5",
+        tags: ["Python", "Machine Learning"],
+        description: "A image search system that integrates vgg16 model, solr search engine, data crawler concepts.",
         image: "https://supwilsmedia.s3.us-east-2.amazonaws.com/proj_img/NasaSimilarImage.png",
         link: "",
         value: 75
