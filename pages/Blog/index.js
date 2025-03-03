@@ -63,7 +63,7 @@ const Blog = ({ initialPosts }) =>
                             />
                         ))
                     ) : (
-                        <p>No blog posts available.</p>
+                        <p className="text-2xl font-bold">No blog posts available.</p>
                     )}
                 </div>
             </div>
