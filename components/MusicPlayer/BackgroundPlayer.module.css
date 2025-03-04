@@ -141,19 +141,24 @@
 .nowPlaying {
     padding: 1rem 0;
     width: 100%;
+    overflow: hidden;
 }
 
 .currentTrack {
     display: flex;
     align-items: center;
+    gap: 0.1rem;
     width: 100%;
     overflow: hidden;
 }
 
 .trackTitle {
     font-size: 1.2rem;
-    width: 100%;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    position: relative;
 }
 
 .trackTitle span {
@@ -252,7 +257,9 @@
     padding: 4px 8px;
     border-radius: 12px;
     cursor: pointer;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 100px;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
@@ -302,70 +309,4 @@
         bottom: 20px;
         right: 20px;
     }
-}
-
-/* Add these new scrolling text classes */
-.scrollingContainer {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.scrollingText {
-    display: inline-block;
-    padding-right: 20px;
-    animation: scrollText 12s linear infinite;
-}
-
-/* For recent tracks styling */
-.recentTracks li:hover .scrollingContainer .scrollingText {
-    animation-play-state: paused;
-}
-
-/* Progress Bar Styles */
-.progressContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 4px;
-}
-
-.progressBar {
-    width: 100%;
-    height: 6px;
-    background-color: var(--second-bg-color);
-    border-radius: 3px;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.progressFill {
-    height: 100%;
-    background-color: var(--main-color);
-    border-radius: 3px;
-    transition: width 0.1s ease;
-}
-
-.progressTime {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: var(--text-color);
-    opacity: 0.8;
-}
-
-/* Hover effect for progress bar */
-.progressBar:hover {
-    height: 8px;
-}
-
-.progressBar:hover .progressFill {
-    background-color: var(--main-color-bright, var(--main-color));
-}
-
-/* Adjust layout when progress bar is added */
-.controls {
-    margin-top: 4px;
 }

@@ -316,7 +316,7 @@ const BackgroundPlayer = () =>
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
-    }, []);
+    });
 
     return (
         <div className={styles.musicPlayerWrapper}>

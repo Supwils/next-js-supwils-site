@@ -1,0 +1,30 @@
+.searchBar {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    border: 1px solid #b99191;
+    color: var(--search-color);
+    background-color: rgb(238, 238, 242);
+    font-size: 1.5rem;
+}
+
+.categoryBox {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    border: 2px solid #1a4966;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.categoryBox:hover {
+    background-color: #154a6a;
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+.categoryBox.active {
+    background-color: #1578b5;
+    color: white;
+}

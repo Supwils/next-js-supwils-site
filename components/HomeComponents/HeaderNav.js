@@ -69,7 +69,7 @@ const HeaderNav = () =>
               <Link href="/Blog">Blogs</Link>
               <Link href="/Project">Projects</Link>
               <Link href="/Resource">Resources</Link>
-              
+              <Link href="/BlogTest">BlogTest</Link>
             </div>
             
           </div>
