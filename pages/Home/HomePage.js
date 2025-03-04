@@ -9,6 +9,7 @@ export default function HomePage() {
       <AboutMe />
       <Exprience />
       <Contact />
+      
       {/* <SkillCard /> */}
     </div>
   );
