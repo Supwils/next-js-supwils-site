@@ -1,7 +1,6 @@
 import styles from './blog.module.css';
 import BlogCard from '../../components/BlogComponents/BlogCard';
 import SearchBar from './SearchBar';
-import { getApiUrl } from '../../lib/apiUtils';
 
 import { useEffect, useState } from 'react';
 
@@ -11,11 +10,9 @@ export async function getServerSideProps()
 {
     try
     {
-        // Use the utility function to get the full API URL
-        const url = getApiUrl('/api/blog/get-recent10');
-
-        console.log('Fetching from:', url);
-        const res = await fetch(url);
+        
+        console.log("12");
+        const res = await fetch(`${backendUrl}/blogs/get-recent`);
 
         if (!res.ok)
         {
@@ -40,7 +37,7 @@ export async function getServerSideProps()
     }
 }
 
-const BlogTest = ({ initialPosts }) =>
+const Blog = ({ initialPosts }) =>
 {
     const [posts, setPosts] = useState(initialPosts);
     const [filteredPosts, setFilteredPosts] = useState([]);
@@ -76,4 +73,4 @@ const BlogTest = ({ initialPosts }) =>
     );
 };
 
-export default BlogTest;
+export default Blog;

@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import styles from './post.module.css';
 import parse from 'html-react-parser';
 import { useState, useEffect } from 'react';
-import { getApiUrl } from '../../lib/apiUtils';
 
 const BlogPost = () =>
 {
@@ -23,13 +22,12 @@ const BlogPost = () =>
         {
             try
             {
-                // Use the utility function
-                const res = await fetch(getApiUrl(`/api/blog/get-byId?id=${_id}`));
-                
+                const res = await fetch(`${backendUrl}/blogs/${_id}`);
                 if (!res.ok) throw new Error('Failed to fetch blog post');
 
                 const data = await res.json();
-                setBlog(data);
+                console.log(data);
+                setBlog(data[0]);
             } catch (err)
             {
                 setError(err.message);
@@ -40,7 +38,7 @@ const BlogPost = () =>
         };
 
         getBlog();
-    }, [_id]); // ✅ Dependencies: Only fetch when `_id` changes
+    }, [_id, backendUrl]); // ✅ Dependencies: Only fetch when `_id` or `backendUrl` changes
 
     // ✅ Loading state
     if (loading) return <p>Loading blog post...</p>;

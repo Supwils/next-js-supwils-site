@@ -231,6 +231,52 @@
     cursor: pointer;
 }
 
+/* Progress bar styles */
+.progressContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.progressBar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--bg-border);
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--main-color);
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: width 0.1s linear;
+}
+
+.progressTime {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-color-light, #aaa);
+}
+
+/* Add a hover effect for the progress bar */
+.progressBar:hover {
+    height: 8px;
+}
+
+/* Add a dragging style for when the user is dragging the progress bar */
+.progressBar:active .progressFill {
+    background-color: var(--main-color-darker, #0056b3);
+}
+
 .recentTracks {
     border-top: 1px solid var(--bg-border);
     padding-top: 5px;

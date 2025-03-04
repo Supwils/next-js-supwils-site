@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import styles from './post.module.css';
 import parse from 'html-react-parser';
 import { useState, useEffect } from 'react';
+import { getApiUrl } from '../../lib/apiUtils';
 
 const BlogPost = () =>
 {
@@ -13,6 +14,12 @@ const BlogPost = () =>
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Handle back button click
+    const handleBackClick = () =>
+    {
+        router.back(); // Use browser history instead of direct navigation
+    };
+
     // ✅ Use useEffect to fetch blog post when `_id` changes
     useEffect(() =>
     {
@@ -22,12 +29,13 @@ const BlogPost = () =>
         {
             try
             {
-                const res = await fetch(`${backendUrl}/blogs/${_id}`);
+                // Use the utility function
+                const res = await fetch(getApiUrl(`/api/blog/get-byId?id=${_id}`));
+
                 if (!res.ok) throw new Error('Failed to fetch blog post');
 
                 const data = await res.json();
-                console.log(data);
-                setBlog(data[0]);
+                setBlog(data);
             } catch (err)
             {
                 setError(err.message);
@@ -38,7 +46,7 @@ const BlogPost = () =>
         };
 
         getBlog();
-    }, [_id, backendUrl]); // ✅ Dependencies: Only fetch when `_id` or `backendUrl` changes
+    }, [_id]); // ✅ Dependencies: Only fetch when `_id` changes
 
     // ✅ Loading state
     if (loading) return <p>Loading blog post...</p>;
@@ -56,6 +64,13 @@ const BlogPost = () =>
 
     return (
         <div className={styles.post_container}>
+            <button
+                className={styles.back_button}
+                onClick={handleBackClick}
+                aria-label="Back to all blogs"
+            >
+                ← Back to Blogs
+            </button>
             <div className={styles.post_content}>
                 <h1>{blog.title}</h1>
                 <h2 className='pt-6 pb-3'>{blog.description}</h2>
