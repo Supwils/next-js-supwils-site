@@ -1,0 +1,371 @@
+.musicPlayerWrapper {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.musicIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    z-index: 101;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.musicIcon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Bridge element to help with mouse movement between icon and player */
+.bridge {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    width: 40px;
+    height: 50px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bridgeVisible {
+    pointer-events: auto;
+}
+
+.playerContainer {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    width: 350px;
+    background-color: var(--background);
+    border-radius: 12px;
+    border: 1px solid var(--bg-border);
+    color: var(--text-color);
+    z-index: 100;
+    padding: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.playerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--bg-border);
+    background-color: var(--second-bg-color);
+    border-radius: 12px 12px 0 0;
+}
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.headerIcon {
+    font-size: 18px;
+    color: var(--main-color);
+}
+
+.playerHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.playerContent {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.urlForm {
+    display: flex;
+    gap: 8px;
+}
+
+.urlInput {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--bg-border);
+    background-color: var(--second-bg-color);
+    color: var(--text-color);
+    font-size: 12px;
+}
+
+.submitButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.submitButton:hover {
+    transform: scale(1.1);
+}
+
+.nowPlaying {
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.currentTrack {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.trackTitle {
+    font-size: 1.2rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.trackTitle span {
+    display: inline-block;
+    max-width: 100%;
+    padding-right: 20px;
+}
+
+.trackTitle span.overflow {
+    animation: scrollText 15s linear infinite;
+}
+
+.playing {
+    color: var(--main-color);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.playButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.playButton:hover {
+    transform: scale(1.1);
+}
+
+.volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.volumeIcon {
+    font-size: 14px;
+    width: 15px;
+}
+
+.volumeSlider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--bg-border);
+    border-radius: 5px;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--main-color);
+    cursor: pointer;
+}
+
+.recentTracks {
+    border-top: 1px solid var(--bg-border);
+    padding-top: 5px;
+    margin-top: 2px;
+}
+
+.recentTracks h4 {
+    font-size: 14px;
+    margin: 0 0 8px 0;
+}
+
+.recentTracks ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.recentTracks li {
+    font-size: 12px;
+    background-color: var(--second-bg-color);
+    padding: 4px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    max-width: 100px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.recentTracks li:hover {
+    background-color: var(--card-bg);
+    transform: scale(1.05);
+    color: var(--main-color);
+}
+
+.hiddenPlayer {
+    display: none;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(0);
+    }
+
+    60% {
+        transform: translateX(calc(-100% + 280px));
+    }
+
+    90%,
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .playerContainer {
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .playerHeader {
+        border-radius: 0;
+    }
+
+    .musicIcon {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Add these new scrolling text classes */
+.scrollingContainer {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.scrollingText {
+    display: inline-block;
+    padding-right: 20px;
+    animation: scrollText 12s linear infinite;
+}
+
+/* For recent tracks styling */
+.recentTracks li:hover .scrollingContainer .scrollingText {
+    animation-play-state: paused;
+}
+
+/* Progress Bar Styles */
+.progressContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+}
+
+.progressBar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--second-bg-color);
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--main-color);
+    border-radius: 3px;
+    transition: width 0.1s ease;
+}
+
+.progressTime {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Hover effect for progress bar */
+.progressBar:hover {
+    height: 8px;
+}
+
+.progressBar:hover .progressFill {
+    background-color: var(--main-color-bright, var(--main-color));
+}
+
+/* Adjust layout when progress bar is added */
+.controls {
+    margin-top: 4px;
+}
