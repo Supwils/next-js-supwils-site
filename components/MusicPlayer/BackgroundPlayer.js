@@ -186,6 +186,40 @@ const BackgroundPlayer = () =>
             }
         };
         getDuration();
+
+        // Initialize progress tracking immediately
+        startProgressTracking();
+    };
+
+    // Function to start progress tracking
+    const startProgressTracking = () =>
+    {
+        // Clear any existing interval first
+        if (progressInterval.current)
+        {
+            clearInterval(progressInterval.current);
+        }
+
+        // Set up interval to update progress
+        progressInterval.current = setInterval(() =>
+        {
+            if (playerRef.current && isPlaying)
+            {
+                try
+                {
+                    playerRef.current.internalPlayer.getCurrentTime().then(currentTime =>
+                    {
+                        setProgress(currentTime);
+                    }).catch(error =>
+                    {
+                        console.error('Error getting current time:', error);
+                    });
+                } catch (error)
+                {
+                    console.error('Error accessing player:', error);
+                }
+            }
+        }, 250); // Update more frequently for smoother progress (4 times per second)
     };
 
     // Handle player state change
@@ -204,40 +238,15 @@ const BackgroundPlayer = () =>
         {
             // Start tracking progress
             setIsPlaying(true);
-
-            // Clear any existing interval
-            if (progressInterval.current)
-            {
-                clearInterval(progressInterval.current);
-            }
-
-            // Set up interval to update progress
-            progressInterval.current = setInterval(async () =>
-            {
-                if (playerRef.current)
-                {
-                    try
-                    {
-                        const currentTime = await playerRef.current.internalPlayer.getCurrentTime();
-                        setProgress(currentTime);
-                    } catch (error)
-                    {
-                        console.error('Error getting current time:', error);
-                    }
-                }
-            }, 1000); // Update every second
+            startProgressTracking();
         }
 
         // Video is paused
         if (event.data === 2)
         {
             setIsPlaying(false);
-
-            // Clear progress tracking interval
-            if (progressInterval.current)
-            {
-                clearInterval(progressInterval.current);
-            }
+            // We don't clear the interval here to continue updating the UI
+            // even while paused
         }
     };
 
@@ -300,7 +309,7 @@ const BackgroundPlayer = () =>
         }
     }, [videoId]);
 
-    // Clean up progress interval and event listeners on unmount
+    // Clean up intervals when component unmounts
     useEffect(() =>
     {
         return () =>
@@ -316,7 +325,16 @@ const BackgroundPlayer = () =>
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
-    });
+    }, []);
+
+    // Restart progress tracking if isPlaying changes
+    useEffect(() =>
+    {
+        if (isPlaying)
+        {
+            startProgressTracking();
+        }
+    }, [isPlaying]);
 
     return (
         <div className={styles.musicPlayerWrapper}>
@@ -367,8 +385,9 @@ const BackgroundPlayer = () =>
                             <div className={styles.currentTrack}>
                                 <div className={styles.trackTitle}>
                                     <div className={styles.scrollingContainer}>
-                                        <span className={styles.scrollingText}>{videoTitle}</span>
-                                        {/* <span className={styles.scrollingText}>{videoTitle}</span> */}
+                                        <span className={styles.scrollingText}>
+                                            {videoTitle}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -414,9 +433,9 @@ const BackgroundPlayer = () =>
 
                     {recentTracks.length > 0 && (
                         <div className={styles.recentTracks}>
-                            <h4>Recent</h4>
+                            <h4>Recent Tracks</h4>
                             <ul>
-                                {recentTracks.map(track => (
+                                {recentTracks.map((track) => (
                                     <li key={track.id} onClick={() =>
                                     {
                                         setVideoId(track.id);
@@ -427,9 +446,6 @@ const BackgroundPlayer = () =>
                                             <span className={styles.scrollingText}>
                                                 {track.title || track.id.substring(0, 6) + '...'}
                                             </span>
-                                            {/* <span className={styles.scrollingText}>
-                                                {track.title || track.id.substring(0, 6) + '...'}
-                                            </span> */}
                                         </div>
                                     </li>
                                 ))}
