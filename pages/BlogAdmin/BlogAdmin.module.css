@@ -1,0 +1,343 @@
+.adminContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+.adminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--bg-border);
+    padding-bottom: 1rem;
+}
+
+.logoutButton {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+    background-color: var(--main-color-darker, #0056b3);
+}
+
+.adminContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.createBlogSection,
+.blogListSection {
+    background-color: var(--background);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blogForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--bg-border);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background-color: var(--second-bg-color);
+    color: var(--text-color);
+}
+
+.submitButton {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+    background-color: var(--main-color-darker, #0056b3);
+}
+
+.blogList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blogItem {
+    border: 1px solid var(--bg-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: var(--second-bg-color);
+}
+
+.blogItem h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.blogItem p {
+    margin: 0.5rem 0;
+    color: var(--text-color-light, #aaa);
+    font-size: 0.9rem;
+}
+
+.blogActions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editButton {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.editButton:hover {
+    background-color: var(--main-color-darker, #0056b3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .adminContent {
+        grid-template-columns: 1fr;
+    }
+
+    .adminHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* Debug information */
+.debugInfo {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    text-align: left;
+    font-size: 0.8rem;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.debugInfo pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Unauthorized access styles */
+.unauthorizedContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    font-family: var(--font-family);
+}
+
+.unauthorizedMessage {
+    text-align: center;
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.unauthorizedMessage h1 {
+    color: #f44336;
+    margin-bottom: 1rem;
+}
+
+.returnButton {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.returnButton:hover {
+    background-color: var(--main-color-darker, #0056b3);
+}
+
+/* Loading indicator */
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    padding: 2rem;
+}
+
+.loading:after {
+    content: "...";
+    animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+
+    0%,
+    20% {
+        content: ".";
+    }
+
+    40% {
+        content: "..";
+    }
+
+    60%,
+    100% {
+        content: "...";
+    }
+}
+
+/* Notification Toast Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    min-width: 250px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.error {
+    background-color: #f44336;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        top: 20px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+.editorToggle {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+    width: fit-content;
+}
+
+.toggleButton {
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+    background: #e0e0e0;
+}
+
+.toggleButton.active {
+    background: #4a90e2;
+    color: white;
+}
+
+.richEditorSection {
+    width: 100%;
+}
+
+.richEditorSection :global(.quill) {
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+}
+
+.richEditorSection :global(.ql-toolbar) {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: #f9f9f9;
+}
+
+.richEditorSection :global(.ql-container) {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    min-height: 200px;
+    font-size: 1rem;
+}
