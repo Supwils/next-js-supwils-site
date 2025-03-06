@@ -1,44 +1,65 @@
 import { useState } from 'react';
 import styles from './AdminLoginModal.module.css';
+import { useRouter } from 'next/router';
 
-const AdminLoginModal = ({ onClose }) => {
+const AdminLoginModal = ({ onClose }) =>
+{
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    try {
-      // Simulate API request (replace with your actual authentication logic)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    try
+    {
+      // Call the authentication API
+      const response = await fetch('/api/auth/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-      // For example only - in production use a secure API endpoint
-      if (username === 'admin' && password === 'password') {
-        // Store authentication state (use a more secure method in production)
-        localStorage.setItem('adminAuthenticated', 'true');
-        
+      const data = await response.json();
+
+      if (response.ok && data.success)
+      {
+        // No need to store in localStorage anymore
+        // We're using HTTP-only cookies now
+
+        // Just close the modal and don't redirect
+        // Set a flag that we can use to show the notification
+        // This is done by dispatching a custom event
+        window.dispatchEvent(new CustomEvent('loginSuccess'));
+
         // Close the modal
         onClose();
-        
-        // Optional: Redirect to admin dashboard
-        // window.location.href = '/admin/dashboard';
-      } else {
-        setError('Invalid username or password');
+      } else
+      {
+        setError(data.message || 'Invalid username or password');
       }
-    } catch (err) {
+    } catch (err)
+    {
+      console.error('Login error:', err);
       setError('Authentication failed. Please try again.');
-    } finally {
+    } finally
+    {
       setLoading(false);
     }
   };
 
   // Close modal when clicking on overlay
-  const handleOverlayClick = (e) => {
-    if (e.target.classList.contains(styles.overlay)) {
+  const handleOverlayClick = (e) =>
+  {
+    if (e.target.classList.contains(styles.overlay))
+    {
       onClose();
     }
   };
@@ -50,10 +71,10 @@ const AdminLoginModal = ({ onClose }) => {
           <h2>Admin Login</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
         </div>
-        
+
         <form onSubmit={handleSubmit} className={styles.form}>
           {error && <div className={styles.error}>{error}</div>}
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="username">Username</label>
             <input
@@ -63,9 +84,10 @@ const AdminLoginModal = ({ onClose }) => {
               onChange={(e) => setUsername(e.target.value)}
               required
               disabled={loading}
+              placeholder="Username (hint: supwils)"
             />
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="password">Password</label>
             <input
@@ -75,11 +97,12 @@ const AdminLoginModal = ({ onClose }) => {
               onChange={(e) => setPassword(e.target.value)}
               required
               disabled={loading}
+              placeholder="Password (hint: 1234)"
             />
           </div>
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             className={styles.submitButton}
             disabled={loading}
           >
