@@ -171,7 +171,7 @@ const HeaderNav = () =>
               <Link href="/Project">Projects</Link>
               <Link href="/Resource">Resources</Link>
               {isAdmin && (
-                <a href="/BlogAdmin" className={styles.adminLink} onClick={navigateToBlogAdmin}>Blog Admin</a>
+                <Link href="/BlogAdmin" className={styles.adminLink} onClick={navigateToBlogAdmin}>Blog Admin</Link>
               )}
             </div>
 
