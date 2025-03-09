@@ -154,6 +154,7 @@ const HeaderNav = () =>
               <Link href="/#about">About</Link>
               <Link href="/#experience">Experience</Link>
               <Link href="/#contact">Contact</Link>
+              <Link href="/Personal/Lifestyle">Lifestyle</Link>
               {isAdmin ? (
                 <button className={styles.adminBtn} onClick={handleAdminLogout}>Admin Logout</button>
               ) : (

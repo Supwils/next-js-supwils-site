@@ -113,6 +113,13 @@ const BlogAdmin = () =>
         }
     };
 
+    const handleBlogSubmit = async (e) =>
+    {
+        e.preventDefault();
+        console.log("Blog submitted");
+        console.log(newBlog);
+    }
+
     const handleInputChange = (e) =>
     {
         const { name, value } = e.target;
@@ -266,7 +273,7 @@ const BlogAdmin = () =>
 
                     {/* Simple HTML Editor */}
                     {!useRichEditor && (
-                        <form onSubmit={handleSubmit} className={styles.blogForm}>
+                        <form onSubmit={handleBlogSubmit} className={styles.blogForm}>
                             <div className={styles.formGroup}>
                                 <label htmlFor="title">Title</label>
                                 <input
@@ -315,7 +322,7 @@ const BlogAdmin = () =>
                                 />
                             </div>
 
-                            <button type="submit" className={styles.submitButton}>
+                            <button type="submit" className={styles.submitButton} onClick={handleBlogSubmit}>
                                 Create Blog
                             </button>
                         </form>
@@ -324,7 +331,7 @@ const BlogAdmin = () =>
                     {/* Rich Text Editor */}
                     {isClient && useRichEditor && (
                         <div className={styles.richEditorSection}>
-                            <form onSubmit={handleSubmit} className={styles.blogForm}>
+                            <form onSubmit={handleBlogSubmit} className={styles.blogForm}>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="title">Title</label>
                                     <input

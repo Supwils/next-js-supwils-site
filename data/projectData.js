@@ -12,7 +12,7 @@ const projectData = [
         tags: ["Fullstack", "React", "Nodejs", "Expressjs","MongoDB"],
         description: "A fullstack web app with modern social media features like login, post, comment, follow, etc. Seprated frontend and backend. Followed Test Driven Development approach. Used Jest for testing.",
         image: "https://supwilsmedia.s3.us-east-2.amazonaws.com/proj_img/websocial1.gif",
-        link: "",
+        link: "https://github.com/Supwils/Full-Stack-Web-Social",
         value: 90
     },
     {
