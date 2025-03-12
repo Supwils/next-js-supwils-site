@@ -3,6 +3,9 @@ import styles from './post.module.css';
 import parse from 'html-react-parser';
 import { useState, useEffect } from 'react';
 import { getApiUrl } from '../../lib/apiUtils';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+
 
 const BlogPost = () =>
 {

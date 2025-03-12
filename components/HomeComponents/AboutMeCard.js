@@ -23,15 +23,16 @@ const AboutMe = () => {
           <ul className="list-disc pl-5  sm:text-lg lg:text-2xl">
             <li>
               <div className="flex pl-3 font-medium">
-                <Icon icon="skill-icons:html" className="translate-y-0.5" />{" "}
-                &nbsp; HTML +&nbsp;
-                <Icon icon="skill-icons:css" className="translate-y-0.5" />{" "}
-                &nbsp; CSS +&nbsp;
-                <Icon
+              <Icon
                   icon="skill-icons:javascript"
                   className="translate-y-0.5"
                 />{" "}
-                &nbsp; Javascript, Proficient for develop &nbsp;
+                &nbsp; Javascript, Proficient for develop +&nbsp;
+                <Icon icon="skill-icons:html" className="translate-y-0.5" />{" "}
+                &nbsp; HTML +&nbsp;
+                <Icon icon="skill-icons:css" className="translate-y-0.5" />{" "}
+                &nbsp; CSS 
+                
               </div>
             </li>
             <li>
@@ -64,7 +65,9 @@ const AboutMe = () => {
                 />{" "}
                 &nbsp; Node.js (CRUD proficient)&nbsp;
                 <Icon icon="devicon:python" className="translate-y-0.5" />{" "}
-                &nbsp; Python (general, ml/ds, leetcode)&nbsp;
+                &nbsp; Python (general, Flask, ml/ds, leetcode)&nbsp;
+                <Icon icon="skill-icons:java-light" className="translate-y-0.5" />{" "}
+                &nbsp; Java &nbsp;
                 <Icon icon="devicon:cplusplus" className="translate-y-1" />{" "}
                 &nbsp; C++ (college oop, algo & graph)&nbsp;
               </div>
@@ -101,7 +104,7 @@ const AboutMe = () => {
                   icon="skill-icons:aws-light"
                   className="translate-y-0.5"
                 />{" "}
-                &nbsp; AWS(EC2,S3,53) +&nbsp;
+                &nbsp; AWS(EC2,S3,Lambda, RDS, 53) +&nbsp;
                 <Icon
                   icon="skill-icons:azure-dark"
                   className="translate-y-0.5"
@@ -116,13 +119,15 @@ const AboutMe = () => {
             </li>
             <li>
               <div className="flex pl-3 font-medium">
+                <Icon icon="icomoon-free:git" className="translate-y-0.5" />{" "} 
+                &nbsp; Git +&nbsp;
                 <Icon icon="skill-icons:docker" className="translate-y-0.5" />{" "}
-                &nbsp; Docker +&nbsp; CI/CD
+                &nbsp; Docker +&nbsp; CI/CD Linux
               </div>
             </li>
             <li>
               <div className="flex pl-3 font-medium">
-                Confortable pair with ChatGPT + Google for problem solving
+                Confortable pair with ChatGPT + Cursor + Google for problem solving
               </div>
             </li>
           </ul>
