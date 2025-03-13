@@ -124,7 +124,7 @@ export default function TestImageUpload()
     return (
         <div>
             <Head>
-                <title>Test Image Upload to S3</title>
+                <title>Test Image Upload to S31</title>
             </Head>
 
             <main style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
