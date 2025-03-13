@@ -1,0 +1,89 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # or your desired version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js
+        run: npm run build
+
+      # Optionally, run tests after build or before build
+      - name: Test
+        run: npm test
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: next-build
+          path: |
+            .next
+            node_modules
+            package.json
+            package-lock.json
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: next-build
+
+      - name: Deploy to EC2
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "./"
+          target: "/var/www/next-js-supwils-site-temp"
+          
+      - name: Finalize on EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            # Move to project folder
+            cd /var/www
+
+            # Remove old backup if any
+            rm -rf next-js-supwils-site-backup
+
+            # Rename current site to backup
+            if [ -d "next-js-supwils-site" ]; then
+              mv next-js-supwils-site next-js-supwils-site-backup
+            fi
+
+            # Rename the temp folder to official site folder
+            mv next-js-supwils-site-temp next-js-supwils-site
+
+            # OPTIONAL: If you store .env on EC2, ensure it is not overwritten
+            if [ -f "next-js-supwils-site-backup/.env" ]; then
+              cp next-js-supwils-site-backup/.env next-js-supwils-site/.env
+            fi
+
+            # Ensure node_modules, .next, package.json are all in place
+            cd next-js-supwils-site
+
+            # If your Next.js app is run by PM2 on port 3000:
+            pm2 stop next-site || true
+            pm2 start npm --name "next-site" -- run start
+            pm2 save
