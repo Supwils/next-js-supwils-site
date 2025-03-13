@@ -1,4 +1,4 @@
-import styles from './Lifestyle.module.css';
+import styles from './lifestyle.module.css';
 
 export default function Lifestyle()
 {
