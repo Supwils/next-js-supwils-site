@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './searchBar.module.css';
 
-const tags = ["All", "Tech","Life","Fullstack", "Nextjs", "React", "Tailwindcss", "Game", "C++", "Python", "Html/CSS", "OpenGL","Machine Learning"];
+const tags = ["All", "Tech","Life"];
 
 const SearchBar = ({ onSearch }) => {
     const [searchText, setSearchText] = useState('');

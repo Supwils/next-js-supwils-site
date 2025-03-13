@@ -10,13 +10,13 @@
 
 .back_button {
     position: absolute;
-    top: 10rem;
-    left: 40rem;
-    background-color: var(--primary);
+    top: 7rem;
+    left: 35rem;
+    background-color: var(--btncolor);
     color: var(--text-color);
     border: none;
     border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     font-size: 1.5rem;
     font-weight: 500;
     cursor: pointer;
@@ -57,11 +57,11 @@
 }
 
 .post_content p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 300;
 }
 
 .post_main {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 300;
 }

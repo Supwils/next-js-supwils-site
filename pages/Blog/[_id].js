@@ -3,8 +3,8 @@ import styles from './post.module.css';
 import parse from 'html-react-parser';
 import { useState, useEffect } from 'react';
 import { getApiUrl } from '../../lib/apiUtils';
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
+import 'react-quill-new/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.bubble.css';
 
 
 const BlogPost = () =>
@@ -72,7 +72,7 @@ const BlogPost = () =>
                 onClick={handleBackClick}
                 aria-label="Back to all blogs"
             >
-                ← Back to Blogs
+            Back
             </button>
             <div className={styles.post_content}>
                 <h1>{blog.title}</h1>

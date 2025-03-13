@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styles from './BlogAdmin.module.css';
 import dynamic from 'next/dynamic';
 
+import TestImageUpload from '../test-image-upload';
 // Dynamically import BlogCreateEditor with SSR disabled
 const BlogCreateEditor = dynamic(
     () => import('@/components/BlogComponents/BlogCreateEditor'),
@@ -23,6 +24,7 @@ const BlogAdmin = () =>
         content: '',
         tags: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Detect client-side rendering
     const [isClient, setIsClient] = useState(false);
@@ -113,12 +115,72 @@ const BlogAdmin = () =>
         }
     };
 
-    const handleBlogSubmit = async (e) =>
+    // Process images in content before submission
+    const processImagesInContent = async (rawContent) =>
     {
-        e.preventDefault();
-        console.log("Blog submitted");
-        console.log(newBlog);
-    }
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = rawContent;
+
+        const imageTags = tempDiv.getElementsByTagName('img');
+        const promises = [];
+
+        for (let img of imageTags)
+        {
+            if (img.src.startsWith('data:'))
+            {
+                const base64Data = img.src;
+                const file = dataURItoBlob(base64Data); // Convert base64 to Blob/File
+
+                promises.push(
+                    uploadImageToS3(file).then((url) =>
+                    {
+                        img.src = url; // Replace the src with the S3 URL
+                    })
+                );
+            }
+        }
+
+        await Promise.all(promises);
+        return tempDiv.innerHTML;
+    };
+
+    const uploadImageToS3 = async (blob) =>
+    {
+        try
+        {
+            // First, get a pre-signed URL
+            const urlResponse = await fetch('/api/blog/upload-image');
+            const { uploadURL, imageUrl } = await urlResponse.json();
+
+            // Then upload the image directly to S3
+            await fetch(uploadURL, {
+                method: 'PUT',
+                body: blob,
+                headers: { 'Content-Type': blob.type }
+            });
+
+            return imageUrl;
+        } catch (error)
+        {
+            console.error('Error uploading to S3:', error);
+            throw error;
+        }
+    };
+
+    const dataURItoBlob = (dataURI) =>
+    {
+        const byteString = atob(dataURI.split(',')[1]);
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const uintArray = new Uint8Array(arrayBuffer);
+
+        for (let i = 0; i < byteString.length; i++)
+        {
+            uintArray[i] = byteString.charCodeAt(i);
+        }
+
+        return new Blob([uintArray], { type: mimeString });
+    };
 
     const handleInputChange = (e) =>
     {
@@ -132,19 +194,31 @@ const BlogAdmin = () =>
         setNewBlog(prev => ({ ...prev, content }));
     };
 
-    const handleSubmit = async (e) =>
+    const handleBlogSubmit = async (e) =>
     {
         e.preventDefault();
 
+        if (isSubmitting) return;
+
         try
         {
+            setIsSubmitting(true);
+            showNotification('Processing blog content...', 'info');
+
+            // Process the blog content (upload images, etc.)
+            const processedContent = await processImagesInContent(newBlog.content);
+
             // Format tags as an array
             const formattedBlog = {
                 ...newBlog,
-                tags: newBlog.tags.split(',').map(tag => tag.trim())
+                content: processedContent,
+                tags: newBlog.tags.split(',').map(tag => tag.trim()).filter(tag => tag)
             };
 
-            const res = await fetch('/api/blog/create', {
+            showNotification('Uploading blog...', 'info');
+
+            // Submit the blog with processed content
+            const res = await fetch('/api/blog/create-blog', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -152,6 +226,8 @@ const BlogAdmin = () =>
                 body: JSON.stringify(formattedBlog),
                 credentials: 'include', // Include cookies for auth
             });
+
+            const data = await res.json();
 
             if (res.ok)
             {
@@ -164,14 +240,19 @@ const BlogAdmin = () =>
                 });
                 fetchBlogs();
                 showNotification('Blog created successfully!');
+                console.log('Created blog:', data.blog);
             } else
             {
-                showNotification('Failed to create blog', 'error');
+                showNotification(`Failed to create blog: ${data.error || 'Unknown error'}`, 'error');
+                console.error('Server response:', data);
             }
         } catch (error)
         {
             console.error('Error creating blog:', error);
-            showNotification('Error creating blog', 'error');
+            showNotification(`Error creating blog: ${error.message || 'Unknown error'}`, 'error');
+        } finally
+        {
+            setIsSubmitting(false);
         }
     };
 
@@ -253,6 +334,7 @@ const BlogAdmin = () =>
 
             <div className={styles.adminContent}>
                 <div className={styles.createBlogSection}>
+                    <TestImageUpload />
                     <h2>Create New Blog</h2>
 
                     {/* Editor Type Toggle */}
@@ -322,8 +404,12 @@ const BlogAdmin = () =>
                                 />
                             </div>
 
-                            <button type="submit" className={styles.submitButton} onClick={handleBlogSubmit}>
-                                Create Blog
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Creating...' : 'Create Blog'}
                             </button>
                         </form>
                     )}
@@ -376,8 +462,12 @@ const BlogAdmin = () =>
                                     />
                                 </div>
 
-                                <button type="submit" className={styles.submitButton}>
-                                    Create Blog
+                                <button
+                                    type="submit"
+                                    className={styles.submitButton}
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? 'Creating...' : 'Create Blog'}
                                 </button>
                             </form>
                         </div>

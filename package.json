@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aws-sdk": "^2.1692.0",
     "boxicons": "^2.1.4",
     "cookie": "^1.0.2",
     "emailjs-com": "^3.2.0",
@@ -18,10 +19,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.0",
     "next": "15.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",
-    "react-quill": "^2.0.0",
+    "react-quill-new": "^3.3.3",
     "react-youtube": "^10.1.0",
     "typed.js": "^2.1.0"
   },
