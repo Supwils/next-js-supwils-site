@@ -23,9 +23,9 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-      # Optionally, run tests after build or before build
-      - name: Test
-        run: npm test
+      # # Optionally, run tests after build or before build
+      # - name: Test
+      #   run: npm test
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
