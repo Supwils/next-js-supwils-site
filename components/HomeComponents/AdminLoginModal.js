@@ -84,7 +84,7 @@ const AdminLoginModal = ({ onClose }) =>
               onChange={(e) => setUsername(e.target.value)}
               required
               disabled={loading}
-              placeholder="Username (hint: supwils)"
+              placeholder="Username"
             />
           </div>
 
@@ -97,7 +97,7 @@ const AdminLoginModal = ({ onClose }) =>
               onChange={(e) => setPassword(e.target.value)}
               required
               disabled={loading}
-              placeholder="Password (hint: 1234)"
+              placeholder="Password"
             />
           </div>
 

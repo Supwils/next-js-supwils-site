@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import styles from './post.module.css';
 import parse from 'html-react-parser';
 import { useState, useEffect } from 'react';
-import { getApiUrl } from '../../lib/apiUtils';
 import 'react-quill-new/dist/quill.snow.css';
 import 'react-quill-new/dist/quill.bubble.css';
 
@@ -11,7 +10,6 @@ const BlogPost = () =>
 {
     const router = useRouter();
     const { _id } = router.query;
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -23,7 +21,7 @@ const BlogPost = () =>
         router.back(); // Use browser history instead of direct navigation
     };
 
-    // ✅ Use useEffect to fetch blog post when `_id` changes
+    // Use useEffect to fetch blog post when `_id` changes
     useEffect(() =>
     {
         if (!_id) return; // Prevent fetching if `_id` is undefined
@@ -32,8 +30,8 @@ const BlogPost = () =>
         {
             try
             {
-                // Use the utility function
-                const res = await fetch(getApiUrl(`/api/blog/get-byId?id=${_id}`));
+                // Use direct fetch with relative URL
+                const res = await fetch(`/api/blog/get-byId?id=${_id}`);
 
                 if (!res.ok) throw new Error('Failed to fetch blog post');
 
@@ -49,18 +47,18 @@ const BlogPost = () =>
         };
 
         getBlog();
-    }, [_id]); // ✅ Dependencies: Only fetch when `_id` changes
+    }, [_id]); // Dependencies: Only fetch when `_id` changes
 
-    // ✅ Loading state
+    // Loading state
     if (loading) return <p>Loading blog post...</p>;
 
-    // ✅ Error handling
+    // Error handling
     if (error) return <p>Error: {error}</p>;
 
-    // ✅ Blog not found
+    // Blog not found
     if (!blog) return <p>Blog not found</p>;
 
-    // ✅ Format the date safely
+    // Format the date safely
     const formattedDate = blog.createdAt
         ? new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
         : 'Unknown Date';
@@ -72,7 +70,7 @@ const BlogPost = () =>
                 onClick={handleBackClick}
                 aria-label="Back to all blogs"
             >
-            Back
+                Back
             </button>
             <div className={styles.post_content}>
                 <h1>{blog.title}</h1>

@@ -1,49 +1,43 @@
 import styles from './blog.module.css';
 import BlogCard from '../../components/BlogComponents/BlogCard';
 import SearchBar from './SearchBar';
-import { getApiUrl } from '../../lib/apiUtils';
+import { useState, useEffect } from 'react';
 
-import { useEffect, useState } from 'react';
-
-//const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-
-export async function getServerSideProps()
+const Blog = () =>
 {
-    try
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() =>
     {
-        // Use the utility function to get the full API URL
-        const url = getApiUrl('/api/blog/get-recent10');
+        // Fetch blogs when component mounts
+        fetchBlogs();
+    }, []);
 
-        console.log('Fetching from:', url);
-        const res = await fetch(url);
-
-        if (!res.ok)
+    const fetchBlogs = async () =>
+    {
+        try
         {
-            throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
+            setLoading(true);
+            const res = await fetch('/api/blog/get-recent10');
+
+            if (!res.ok)
+            {
+                throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
+            }
+
+            const data = await res.json();
+            setPosts(data || []);
+        } catch (error)
+        {
+            console.error("Error fetching blog posts:", error);
+            setError(error.message);
+        } finally
+        {
+            setLoading(false);
         }
-
-        const data = await res.json();
-
-        return {
-            props: {
-                initialPosts: data || [],
-            },
-        };
-    } catch (error)
-    {
-        console.error("Error fetching blog posts:", error);
-        return {
-            props: {
-                initialPosts: [],
-            },
-        };
-    }
-}
-
-const Blog = ({ initialPosts }) =>
-{
-    const [posts, setPosts] = useState(initialPosts);
-    const [filteredPosts, setFilteredPosts] = useState([]);
+    };
 
     const handleSearch = (text, tags) =>
     {
@@ -55,7 +49,11 @@ const Blog = ({ initialPosts }) =>
             <div className={styles.blog_content}>
                 <SearchBar onSearch={handleSearch} />
                 <div className={styles.blog_list}>
-                    {posts.length > 0 ? (
+                    {loading ? (
+                        <p>Loading blog posts...</p>
+                    ) : error ? (
+                        <p className="text-2xl font-bold">Error loading posts: {error}</p>
+                    ) : posts.length > 0 ? (
                         posts.map((blog, index) => (
                             <BlogCard
                                 key={index}
