@@ -6,9 +6,9 @@ const resources = {
             "link": "https://github.com/yt-dlp/yt-dlp"
         },
         {
-            "name": "Deep Learning Specialization",
-            "description": "Deep Learning Specialization by Andrew Ng",
-            "link": "https://www.coursera.org/specializations/deep-learning"
+            "name": "json-server",
+            "description": "json-server is a tool to create a fake REST API",
+            "link": "https://www.npmjs.com/package/json-server"
         },
         {
             "name": "Machine Lsdfdsfsearning",

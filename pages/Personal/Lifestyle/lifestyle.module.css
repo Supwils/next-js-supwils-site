@@ -3,12 +3,13 @@
     justify-content: center;
     align-items: center;
     padding: 0 3% 0% 3%;
+    min-height: 100vh;
 }
 
 .lifestyle_content{
-    justify-content: left; /* Space between content and image */
+    justify-content: left;
     align-items: center;
-    text-align: left; /* Align text to the left */
+    text-align: left;
     width: 70%;
     background: var(--background);
     border-radius: 1rem;
@@ -16,4 +17,351 @@
     margin-top: 1rem;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     color: var(--text-color);
+}
+
+.lifestyle_title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.lifestyle_intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.7rem;
+    line-height: 1.6;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation Anchors */
+.nav_anchors {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    padding: 1.2rem;
+    background: var(--accent-light);
+    border-radius: 0.5rem;
+    position: sticky;
+    top: 1rem;
+    z-index: 10;
+}
+
+.anchor_link {
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.anchor_link:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs Navigation */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: var(--accent-light);
+    color: var(--text-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.tab.active {
+    background: var(--accent);
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 5rem;
+}
+
+.section h2 {
+    font-size: 2.6rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section h2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+}
+
+.section_content {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section_text {
+    flex: 3;
+}
+
+.section_text p {
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+    font-size: 1.6rem;
+}
+
+.section_text ul {
+    padding-left: 1.8rem;
+    font-size: 1.6rem;
+}
+
+.section_text li {
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.section_image {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image_placeholder {
+    width: 100%;
+    height: 300px;
+    background: var(--accent-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: var(--text-dark);
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+/* Quote Box */
+.quote_box {
+    background: var(--accent-light);
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-style: italic;
+    margin: 2.5rem 0;
+}
+
+.quote_box p {
+    font-size: 1.7rem;
+    line-height: 1.6;
+}
+
+/* Workout Plan */
+.workout_plan {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-top: 1.8rem;
+}
+
+.workout_day {
+    background: var(--accent-light);
+    padding: 1.8rem;
+    border-radius: 0.5rem;
+}
+
+.workout_day h3 {
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.workout_day p {
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+}
+
+.workout_day ul {
+    padding-left: 1.8rem;
+}
+
+.workout_day li {
+    margin-bottom: 0.7rem;
+    font-size: 1.5rem;
+}
+
+/* Habits */
+.habits_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-top: 1.8rem;
+}
+
+.habit_card {
+    background: var(--accent-light);
+    padding: 1.8rem;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.habit_card h3 {
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.habit_card ul {
+    padding-left: 1.8rem;
+}
+
+.habit_card li {
+    margin-bottom: 0.7rem;
+    font-size: 1.5rem;
+}
+
+/* Activities */
+.activities_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-top: 1.8rem;
+}
+
+.activity_item {
+    background: var(--accent-light);
+    padding: 1.8rem;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.activity_item h3 {
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.activity_item p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .lifestyle_content {
+        width: 90%;
+        padding: 3rem;
+    }
+    
+    .section_content {
+        flex-direction: column;
+    }
+    
+    .section_image {
+        margin-top: 1.5rem;
+    }
+
+    .nav_anchors {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .lifestyle_title {
+        font-size: 3rem;
+    }
+    
+    .lifestyle_intro {
+        font-size: 1.5rem;
+    }
+    
+    .section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .section_text p, .section_text ul {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tab {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .workout_plan, 
+    .habits_container, 
+    .activities_grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .lifestyle_title {
+        font-size: 2.6rem;
+    }
+    
+    .lifestyle_intro {
+        font-size: 1.4rem;
+    }
+
+    .nav_anchors {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .anchor_link {
+        text-align: center;
+        width: 100%;
+        font-size: 1.4rem;
+    }
+    
+    .section_text p, .section_text ul {
+        font-size: 1.4rem;
+    }
+    
+    .quote_box p {
+        font-size: 1.5rem;
+    }
+    
+    .activity_item p, .habit_card li, .workout_day li {
+        font-size: 1.3rem;
+    }
+    
+    .activity_item h3, .habit_card h3, .workout_day h3 {
+        font-size: 1.6rem;
+    }
 }
