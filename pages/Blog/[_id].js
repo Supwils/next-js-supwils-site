@@ -62,7 +62,7 @@ const BlogPost = () =>
     const formattedDate = blog.createdAt
         ? new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
         : 'Unknown Date';
-
+    
     return (
         <div className={styles.post_container}>
             <button
