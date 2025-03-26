@@ -5,11 +5,11 @@ import styles from './IntroCard.module.css';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 
-
-
-const IntroCard = () => {
+const IntroCard = () =>
+{
     const { t } = useTranslation();
-    useEffect(() => {
+    useEffect(() =>
+    {
         const typed = new Typed('.multiple-text', {
             strings: ['Software Developer', 'Web Developer', 'Student', 'Athletic Trainer'],
             typeSpeed: 100,
@@ -19,7 +19,8 @@ const IntroCard = () => {
         });
 
         // Cleanup function to destroy the Typed instance when the component unmounts
-        return () => {
+        return () =>
+        {
             typed.destroy();
         };
     }, []);
@@ -39,14 +40,14 @@ const IntroCard = () => {
                     </div>
                     <a href="https://supwilsmedia.s3.us-east-2.amazonaws.com/hs_resume_fs_1.pdf" target="_blank" rel="noopener noreferrer" className="btn">Download CV</a>
                 </div>
- 
-               <div className={styles.image_flip_container}>
+
+                <div className={styles.image_flip_container}>
                     <div className={styles.image_float}>
                         <div className={styles.image_flip}>
-                            <Image src="/images/HuahaoSea.png" width={1000} height={1000}  className={styles.front_img} alt="Huahao Shang Front" />
-                        <Image src="/images/Huahao.png" width={1000} height={1000} className={styles.back_img} alt="Huahao Shang Back" />
-                     </div>
-                </div>
+                            <Image src="/images/HuahaoSea.png" width={1000} height={1000} className={styles.front_img} alt="Huahao Shang Front" />
+                            <Image src="/images/Huahao.png" width={1000} height={1000} className={styles.back_img} alt="Huahao Shang Back" />
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

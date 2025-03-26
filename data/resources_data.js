@@ -18,9 +18,9 @@ const resources = {
     ],
     "General": [
         {
-            "name": "How to Make asdgsdg Video",
-            "description": "How to Make a Video by Peter McKinnon",
-            "link": "https://www.youtube.com/watch?v=OcU6Q2zW8Y4"
+            "name": "MDN Web Docs",
+            "description": "The official documentation for the web development principles and technologies.",
+            "link": "https://developer.mozilla.org/en-US/"
         },
         {
             "name": "How to Msdgsgake a Video",

@@ -1,30 +1,91 @@
+.searchContainer {
+    margin-bottom: 2rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
 .searchBar {
     width: 100%;
     padding: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-radius: 5px;
     border: 1px solid #b99191;
     color: var(--search-color);
     background-color: rgb(238, 238, 242);
     font-size: 1.5rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.searchBar:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 120, 181, 0.4);
+    border-color: #1578b5;
+}
+
+.tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .categoryBox {
-    padding: 0.5rem;
-    margin-right: 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1rem;
     border: 2px solid #1a4966;
     color: var(--text-color);
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
 .categoryBox:hover {
     background-color: #154a6a;
     color: var(--text-color);
-    transition: 0.3s;
+    transform: translateY(-2px);
+}
+
+.categoryBox:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 120, 181, 0.6);
 }
 
 .categoryBox.active {
     background-color: #1578b5;
     color: white;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .searchBar {
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+
+    .categoryBox {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+    }
 }

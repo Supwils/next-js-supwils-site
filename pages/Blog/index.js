@@ -1,5 +1,6 @@
 import styles from './blog.module.css';
 import BlogCard from '../../components/BlogComponents/BlogCard';
+import BlogCardSkeleton from '../../components/BlogComponents/BlogCardSkeleton';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
 
@@ -50,18 +51,21 @@ const Blog = () =>
                 <SearchBar onSearch={handleSearch} />
                 <div className={styles.blog_list}>
                     {loading ? (
-                        <p>Loading blog posts...</p>
+                        // Show skeleton cards while loading
+                        Array(3).fill().map((_, index) => (
+                            <BlogCardSkeleton key={index} />
+                        ))
                     ) : error ? (
                         <p className="text-2xl font-bold">Error loading posts: {error}</p>
                     ) : posts.length > 0 ? (
                         posts.map((blog, index) => (
                             <BlogCard
-                                key={index}
+                                key={blog._id || index}
                                 id={blog._id}
                                 title={blog.title}
                                 description={blog.description}
                                 tags={blog.tags}
-                                date={blog.date}
+                                date={blog.date || blog.createdAt}
                                 slug={blog.slug}
                             />
                         ))
