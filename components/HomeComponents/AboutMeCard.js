@@ -27,11 +27,11 @@ const AboutMe = () => {
                   icon="skill-icons:javascript"
                   className="translate-y-0.5"
                 />{" "}
-                &nbsp; Javascript, Proficient for develop +&nbsp;
+                &nbsp; Javascript(ES6+), Proficient for develop +&nbsp;
                 <Icon icon="skill-icons:html" className="translate-y-0.5" />{" "}
-                &nbsp; HTML +&nbsp;
+                &nbsp; HTML5 +&nbsp;
                 <Icon icon="skill-icons:css" className="translate-y-0.5" />{" "}
-                &nbsp; CSS 
+                &nbsp; CSS3 
                 
               </div>
             </li>

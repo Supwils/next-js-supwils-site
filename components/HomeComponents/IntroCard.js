@@ -38,7 +38,7 @@ const IntroCard = () =>
                         <a href="https://github.com/Supwils/" target="_blank"><i className='bx bxl-github' ></i></a>
                         <a href='https://space.bilibili.com/479803243' target="_blank"><i className="fa-brands fa-bilibili"></i></a>
                     </div>
-                    <a href="https://supwilsmedia.s3.us-east-2.amazonaws.com/hs_resume_fs_1.pdf" target="_blank" rel="noopener noreferrer" className="btn">Download CV</a>
+                    {/* <a href="https://supwilsmedia.s3.us-east-2.amazonaws.com/hs_resume_fs_1.pdf" target="_blank" rel="noopener noreferrer" className="btn">Download CV</a> */}
                 </div>
 
                 <div className={styles.image_flip_container}>

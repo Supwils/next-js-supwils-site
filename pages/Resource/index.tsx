@@ -1,11 +1,11 @@
 import styles from './ResourceShare.module.css';
-import resources from '../../data/resources_data';
+import resources, { Resource, ResourcesData } from '../../data/resources_data';
 
-const ResourceShare = () => {
+const ResourceShare = (): JSX.Element => {
     return (
         <div className={styles.resource_container}>
             <div className={styles.resource_content}>
-                <h1 className="pt-10 text-3xl font-bold">Resource Share</h1>
+                <h1 className="pt-10 text-3xl font-bold">Resource Share1</h1>
                 {Object.keys(resources).map((category) => (
                     <div key={category} className={styles.category_section}>
                         <h2 className={styles.category_title}>{category}</h2>
@@ -35,4 +35,4 @@ const ResourceShare = () => {
     );
 };
 
-export default ResourceShare;
+export default ResourceShare; 
